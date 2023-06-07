@@ -1,0 +1,104 @@
+{% include 'header.html' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Form Data Pembelian</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/formpembelian">Tambah</a></li>
+              <li class="breadcrumb-item active"><a href="/datapembelian">Data</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Tambah</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" action ="/simpanformdatapembelian" method="POST">
+                  <div class="card-body">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" id="tanggal" name="tanggal" value="date(Year-Month-Day)" class="form-control">
+                      </div>
+                    <div class="form-group">
+                      <label for="supplier">Supplier </label>
+                      <select name="supplier" id="supplier" class="form-control" required>
+                        <option value="">-pilih-</option>
+                        {% for option in options %}
+                        <option value="{{option}}">{{ option }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="barang">Barang</label>
+                        <select name="barang" id="barang" class="form-control" required>
+                          <option value="">-pilih-</option>
+                          {% for option in optionso %}
+                          <option value="{{option}}">{{ option }}</option>
+                          {% endfor %}
+                          </select>
+                    </div>
+                    <div class="form-group">                      
+                      <script>
+                        $(document).ready(function() {
+                          $.getJSON("/masterbarang", function(data) {
+                            $(".harga").each(function(index) {
+                              var harga = data[index].harga;
+                              var jumlah = parseInt($(this).siblings(".jumlah").text());
+                              
+                              if (!isNaN(harga) && !isNaN(jumlah)) {
+                                var total = harga * jumlah;
+                                $(this).siblings(".total").text("Total: " + total);
+                              } else {
+                                $(this).siblings(".total").text("Total: -");
+                              }
+                            });
+                          });
+                        });
+                      </script>
+                      <label for="harga">Harga</label>
+                      <span type="text" class="form-control" id="harga" class="total" oninput="/masterbarang">
+                    </div>
+                     <div class="form-group">
+                        <label for="item">Item</label>
+                        <input type="number" class="form-control" id="item" placeholder="Input item" oninput="hitungTotal()"><br>
+                    </div>
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+          </div>
+        </div>
+    </div>
+
+        
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+  

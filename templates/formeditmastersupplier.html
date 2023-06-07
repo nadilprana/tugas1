@@ -1,0 +1,73 @@
+{% include 'header.html' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Form Edit Master Supplier</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/formmastersupplier">Tambah</a></li>
+              <li class="breadcrumb-item active"><a href="/mastersupplier">Data</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Edit</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" action ="/edit/formmastersupplier/{{ data[0] }}" method="POST">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="nama">Nama Supplier</label>
+                      <input type="input" class="form-control" placeholder="Nama" name="nama" value="{{ data[1] }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat Supplier</label>
+                        <input type="input" class="form-control" placeholder="Alamat" name="alamat" value="{{ data[2] }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kota">Kota Supplier</label>
+                        <input type="text" class="form-control" placeholder="Kota" name="kota" value="{{ data[3] }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="provinsi">Provinsi Supplier</label>
+                        <input type="text" class="form-control" placeholder="Provinsi" name="provinsi" value="{{ data[4] }}" required>
+                    </div>
+       
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+          </div>
+        </div>
+    </div>
+
+        
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+  
